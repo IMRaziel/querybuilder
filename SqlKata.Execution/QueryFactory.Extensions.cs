@@ -342,7 +342,7 @@ namespace SqlKata.Execution
                 }
 
                 var foreignIds = dynamicResult.Where(x => x[include.ForeignKey] != null)
-                    .Select(x => x[include.ForeignKey].ToString())
+                    .Select(x => x[include.ForeignKey] is Guid ? x[include.ForeignKey] : x[include.ForeignKey].ToString())
                     .ToList();
 
                 if (!foreignIds.Any())
