@@ -357,6 +357,8 @@ namespace SqlKata.Execution
 
                 foreach (var item in dynamicResult)
                 {
+                    if(item[include.ForeignKey] == null) continue;
+
                     var foreignValue = item[include.ForeignKey].ToString();
                     item[include.Name] = related.ContainsKey(foreignValue) ? related[foreignValue] : null;
                 }
